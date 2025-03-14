@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.mariqzw.enums.Priority;
 import org.mariqzw.enums.Status;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "tasks")
 public class Task extends BaseEntity {
@@ -17,14 +19,16 @@ public class Task extends BaseEntity {
     private User author;
     @ManyToOne
     private User assignee;
+    private LocalDate deadline;
 
-    public Task(String title, String description, Status status, Priority priority, User author, User assignee) {
+    public Task(String title, String description, Status status, Priority priority, User author, User assignee, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.author = author;
         this.assignee = assignee;
+        this.deadline = deadline;
     }
 
     protected Task() {}
@@ -81,6 +85,15 @@ public class Task extends BaseEntity {
 
     public void setAssignee(User assignee) {
         this.assignee = assignee;
+    }
+
+    @Column(name = "deadline", nullable = false)
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
     @Override
