@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: task-db
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Lg2003"
+      POSTGRES_DB: "taskSystem"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
